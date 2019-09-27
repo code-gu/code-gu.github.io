@@ -55,32 +55,33 @@
   };
 </script>
 
-  <meta name="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
-<meta name="keywords" content="技术,后端,代码,程序员">
-<meta property="og:type" content="website">
-<meta property="og:title" content="卑微小古的blog">
-<meta property="og:url" content="https://code-gu.github.io.git/index.html">
+  <meta name="description" content="完成第一个MyBatis程序首先确保安装好jdk1.8和mysql5.7版本数据库、eclipse,以及下载MyBatis的jar包并导入进classpath中新建Java项目，名为demo1. 创建数据库myatis_test2. 创建student表   stuId(INT 5) stuName(VARCHAR(50))    1 张三   2 李四   3 王五   3. 从XML映射SQL">
+<meta name="keywords" content="MyBatis,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一个MyBatis程序">
+<meta property="og:url" content="https://code-gu.github.io.git/2019/09/27/第一个MyBatis程序/index.html">
 <meta property="og:site_name" content="卑微小古的blog">
-<meta property="og:description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
+<meta property="og:description" content="完成第一个MyBatis程序首先确保安装好jdk1.8和mysql5.7版本数据库、eclipse,以及下载MyBatis的jar包并导入进classpath中新建Java项目，名为demo1. 创建数据库myatis_test2. 创建student表   stuId(INT 5) stuName(VARCHAR(50))    1 张三   2 李四   3 王五   3. 从XML映射SQL">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-27T15:39:20.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="卑微小古的blog">
-<meta name="twitter:description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
-  <link rel="canonical" href="https://code-gu.github.io.git/">
+<meta name="twitter:title" content="第一个MyBatis程序">
+<meta name="twitter:description" content="完成第一个MyBatis程序首先确保安装好jdk1.8和mysql5.7版本数据库、eclipse,以及下载MyBatis的jar包并导入进classpath中新建Java项目，名为demo1. 创建数据库myatis_test2. 创建student表   stuId(INT 5) stuName(VARCHAR(50))    1 张三   2 李四   3 王五   3. 从XML映射SQL">
+  <link rel="canonical" href="https://code-gu.github.io.git/2019/09/27/第一个MyBatis程序/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>卑微小古的blog</title>
+  <title>第一个MyBatis程序 | 卑微小古的blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -211,12 +212,13 @@
 
           <div id="content" class="content">
             
+
   <div id="posts" class="posts-expand">
-        <article itemscope itemtype="http://schema.org/Article">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block home">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2019/09/27/第一个MyBatis程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -229,9 +231,8 @@
       <meta itemprop="name" content="卑微小古的blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/27/第一个MyBatis程序/" class="post-title-link" itemprop="url">第一个MyBatis程序</a>
+        <h1 class="post-title" itemprop="name headline">第一个MyBatis程序
+
           
         </h1>
 
@@ -278,7 +279,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="完成第一个MyBatis程序"><a href="#完成第一个MyBatis程序" class="headerlink" title="完成第一个MyBatis程序"></a>完成第一个MyBatis程序</h1><pre><code>首先确保安装好jdk1.8和mysql5.7版本数据库、eclipse,以及下载MyBatis的jar包并导入进classpath中</code></pre><h2 id="新建Java项目，名为demo"><a href="#新建Java项目，名为demo" class="headerlink" title="新建Java项目，名为demo"></a>新建Java项目，名为demo</h2><h2 id="1-创建数据库myatis-test"><a href="#1-创建数据库myatis-test" class="headerlink" title="1. 创建数据库myatis_test"></a>1. 创建数据库myatis_test</h2><h2 id="2-创建student表"><a href="#2-创建student表" class="headerlink" title="2. 创建student表"></a>2. 创建<font size="5" color="blue">student</font>表</h2><table>
+        <h1 id="完成第一个MyBatis程序"><a href="#完成第一个MyBatis程序" class="headerlink" title="完成第一个MyBatis程序"></a>完成第一个MyBatis程序</h1><pre><code>首先确保安装好jdk1.8和mysql5.7版本数据库、eclipse,以及下载MyBatis的jar包并导入进classpath中</code></pre><h2 id="新建Java项目，名为demo"><a href="#新建Java项目，名为demo" class="headerlink" title="新建Java项目，名为demo"></a>新建Java项目，名为demo</h2><h2 id="1-创建数据库myatis-test"><a href="#1-创建数据库myatis-test" class="headerlink" title="1. 创建数据库myatis_test"></a>1. 创建数据库myatis_test</h2><h2 id="2-创建student表"><a href="#2-创建student表" class="headerlink" title="2. 创建student表"></a>2. 创建<font size="5" color="blue">student</font>表</h2><table>
 <thead>
 <tr>
 <th>stuId(INT 5)</th>
@@ -311,418 +312,54 @@
 <p>stuId=1,stuName=张三<br>stuId=2,stuName=李四<br>stuId=3,stuName=王五</p>
 </blockquote>
 
-        
-      
     </div>
 
     
     
     
+        
+      
+
       <footer class="post-footer">
-          <div class="post-eof"></div>
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+            
+              <a href="/tags/Java/" rel="tag"># Java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/26/MyBatis入门篇/" rel="next" title="MyBatis入门篇">
+                  <i class="fa fa-chevron-left"></i> MyBatis入门篇
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
       </footer>
+    
   </div>
   
   
   
   </article>
 
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2019/09/26/MyBatis入门篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="code-gu">
-      <meta itemprop="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
-      <meta itemprop="image" content="/images/head_pic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微小古的blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/26/MyBatis入门篇/" class="post-title-link" itemprop="url">MyBatis入门篇</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-26 09:04:54" itemprop="dateCreated datePublished" datetime="2019-09-26T09:04:54+08:00">2019-09-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-27 17:14:29" itemprop="dateModified" datetime="2019-09-27T17:14:29+08:00">2019-09-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="本章主要简介MyBatis的开发入门"><a href="#本章主要简介MyBatis的开发入门" class="headerlink" title="本章主要简介MyBatis的开发入门"></a>本章主要简介MyBatis的开发入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ol>
-<li>MyBatis本是<font size="5" color="blue">apache</font>的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。</li>
-<li>MyBatis是支持<font size="5" color="blue">普通sql查询</font>，<font size="5" color="blue">存储过程</font>，和<font size="5" color="blue">高级映射</font>的优秀持久层框架</li>
-</ol>
-<h3 id="简介MyBatis的特点及其优势"><a href="#简介MyBatis的特点及其优势" class="headerlink" title="简介MyBatis的特点及其优势"></a>简介MyBatis的特点及其优势</h3><li>MyBatis是一个支持普通SQL查询、存储过程和高级映射的<font size="5" color="#FF0000">优秀持久层框架</font>  </li>
-<li>MyBatis使得用户无需再写底层的jdbc连接五大步骤，只需配置简单的XML以及properties文件即可完成</li>
-<li>消除了大量的JDBC冗余代码</li>
-<li>易上手和掌握</li>
-<li>能很好地与传统数据库协同工作</li>
-<li>很好地接受SQL语句</li>
-<li>提供与第三方缓存类库的集成支持</li>
-<li>引入了更好的性能</li>  
-
-
-<p>》》<a href="/2019/09/27/第一个MyBatis程序/" title="第一个MyBatis程序">第一个MyBatis程序</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
   </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2019/09/24/软件开发流程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="code-gu">
-      <meta itemprop="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
-      <meta itemprop="image" content="/images/head_pic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微小古的blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/24/软件开发流程/" class="post-title-link" itemprop="url">软件开发流程</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-24 22:41:29" itemprop="dateCreated datePublished" datetime="2019-09-24T22:41:29+08:00">2019-09-24</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-26 08:54:27" itemprop="dateModified" datetime="2019-09-26T08:54:27+08:00">2019-09-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件工程/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="软件开发的定义"><a href="#软件开发的定义" class="headerlink" title="软件开发的定义"></a>软件开发的定义</h1><p>软件开发是根据用户要求建造出软件系统或者系统中的软件部分的过程。软件开发是一项包括需求捕捉、需求分析、设计、实现和测试的系统工程。  </p>
-<h2 id="根据软件工程这一学科，具体软件开发流程如下"><a href="#根据软件工程这一学科，具体软件开发流程如下" class="headerlink" title="根据软件工程这一学科，具体软件开发流程如下"></a>根据软件工程这一学科，具体软件开发流程如下</h2><!-- ![logo](_posts/软件开发流程/1.jpg) -->
-<p><img src="/2019/09/24/软件开发流程/1.jpg" alt="pic"></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2019/09/23/使用mybatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="code-gu">
-      <meta itemprop="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
-      <meta itemprop="image" content="/images/head_pic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微小古的blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/23/使用mybatis/" class="post-title-link" itemprop="url">使用mybatis</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-23 12:05:07" itemprop="dateCreated datePublished" datetime="2019-09-23T12:05:07+08:00">2019-09-23</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-24 20:28:17" itemprop="dateModified" datetime="2019-09-24T20:28:17+08:00">2019-09-24</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="现在开始学习使用mybatis框架"><a href="#现在开始学习使用mybatis框架" class="headerlink" title="现在开始学习使用mybatis框架"></a>现在开始学习使用mybatis框架</h2><h3 id="mybatis的jar包"><a href="#mybatis的jar包" class="headerlink" title="mybatis的jar包"></a>mybatis的jar包</h3><p><a href="http://www.mybatis.cn/82.html" target="_blank" rel="noopener">mybatis的下载地址</a><br><a href="https://mybatis.org/mybatis-3/" target="_blank" rel="noopener">mybatis的使用帮助(英文)</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2019/09/21/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="code-gu">
-      <meta itemprop="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
-      <meta itemprop="image" content="/images/head_pic.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卑微小古的blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/21/hello-world/" class="post-title-link" itemprop="url">卑微小古</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-21 14:26:42" itemprop="dateCreated datePublished" datetime="2019-09-21T14:26:42+08:00">2019-09-21</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-24 10:29:57" itemprop="dateModified" datetime="2019-09-24T10:29:57+08:00">2019-09-24</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="你好！-Hexo"><a href="#你好！-Hexo" class="headerlink" title="你好！ Hexo"></a>你好！ Hexo</h2><h3 id="三流的代码，一流的BUG"><a href="#三流的代码，一流的BUG" class="headerlink" title="三流的代码，一流的BUG"></a>三流的代码，一流的BUG</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-  </div>
-
-  
 
 
           </div>
@@ -741,6 +378,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -753,6 +395,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#完成第一个MyBatis程序"><span class="nav-number">1.</span> <span class="nav-text">完成第一个MyBatis程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建Java项目，名为demo"><span class="nav-number">1.1.</span> <span class="nav-text">新建Java项目，名为demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建数据库myatis-test"><span class="nav-number">1.2.</span> <span class="nav-text">1. 创建数据库myatis_test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建student表"><span class="nav-number">1.3.</span> <span class="nav-text">2. 创建student表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-从XML映射SQL语句"><span class="nav-number">1.4.</span> <span class="nav-text">3. 从XML映射SQL语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-从XML中创建sqlSessionFactory实例"><span class="nav-number">1.5.</span> <span class="nav-text">4. 从XML中创建sqlSessionFactory实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-配置数据库连接信息文件jdbc-properties"><span class="nav-number">1.6.</span> <span class="nav-text">5. 配置数据库连接信息文件jdbc.properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-新建Test-java代码"><span class="nav-number">1.7.</span> <span class="nav-text">6. 新建Test.java代码</span></a></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
