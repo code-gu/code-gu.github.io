@@ -25,7 +25,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '7.4.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="本章主要简介MyBatis的开发入门简介 MyBatis本是apache的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。 MyBatis是支持普通sql查询，存储过程，和高级映射的优秀持久层框架  简介MyBatis的特点及其优势MyBatis是一个支持普通SQL查询、存储过程和高级映射的优秀持久层框架   MyBat">
+  <meta name="description" content="本章主要简介MyBatis的开发入门简介 MyBatis本是apache的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。 MyBatis是支持普通sql查询，存储过程，和高级映射的优秀持久层框架">
 <meta name="keywords" content="技术,后端,代码,程序员">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis入门篇">
 <meta property="og:url" content="https://code-gu.github.io.git/2019/09/26/MyBatis入门篇/index.html">
 <meta property="og:site_name" content="卑微小古的blog">
-<meta property="og:description" content="本章主要简介MyBatis的开发入门简介 MyBatis本是apache的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。 MyBatis是支持普通sql查询，存储过程，和高级映射的优秀持久层框架  简介MyBatis的特点及其优势MyBatis是一个支持普通SQL查询、存储过程和高级映射的优秀持久层框架   MyBat">
+<meta property="og:description" content="本章主要简介MyBatis的开发入门简介 MyBatis本是apache的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。 MyBatis是支持普通sql查询，存储过程，和高级映射的优秀持久层框架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-27T09:14:29.697Z">
+<meta property="og:updated_time" content="2019-09-29T10:36:54.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis入门篇">
-<meta name="twitter:description" content="本章主要简介MyBatis的开发入门简介 MyBatis本是apache的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。 MyBatis是支持普通sql查询，存储过程，和高级映射的优秀持久层框架  简介MyBatis的特点及其优势MyBatis是一个支持普通SQL查询、存储过程和高级映射的优秀持久层框架   MyBat">
+<meta name="twitter:description" content="本章主要简介MyBatis的开发入门简介 MyBatis本是apache的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。 MyBatis是支持普通sql查询，存储过程，和高级映射的优秀持久层框架">
   <link rel="canonical" href="https://code-gu.github.io.git/2019/09/26/MyBatis入门篇/">
 
 
@@ -133,6 +133,8 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">三流的代码，一流的BUG</p>
+      
   </div>
 
   <div class="site-nav-toggle">
@@ -258,7 +260,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-27 17:14:29" itemprop="dateModified" datetime="2019-09-27T17:14:29+08:00">2019-09-27</time>
+                <time title="修改时间：2019-09-29 18:36:54" itemprop="dateModified" datetime="2019-09-29T18:36:54+08:00">2019-09-29</time>
               </span>
             
           
@@ -291,6 +293,7 @@
 <li>MyBatis本是<font size="5" color="blue">apache</font>的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。</li>
 <li>MyBatis是支持<font size="5" color="blue">普通sql查询</font>，<font size="5" color="blue">存储过程</font>，和<font size="5" color="blue">高级映射</font>的优秀持久层框架</li>
 </ol>
+<a id="more"></a>
 <h3 id="简介MyBatis的特点及其优势"><a href="#简介MyBatis的特点及其优势" class="headerlink" title="简介MyBatis的特点及其优势"></a>简介MyBatis的特点及其优势</h3><li>MyBatis是一个支持普通SQL查询、存储过程和高级映射的<font size="5" color="#FF0000">优秀持久层框架</font>  </li>
 <li>MyBatis使得用户无需再写底层的jdbc连接五大步骤，只需配置简单的XML以及properties文件即可完成</li>
 <li>消除了大量的JDBC冗余代码</li>
@@ -416,16 +419,6 @@
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
         <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span>
         </a>
@@ -440,8 +433,6 @@
           
         
         
-        
-          
         
           
         
@@ -476,7 +467,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
 
         
 
@@ -504,6 +495,7 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 <script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
 <script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
 <script src="/js/next-boot.js?v=7.4.0"></script>
 
 

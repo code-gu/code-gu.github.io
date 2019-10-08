@@ -25,7 +25,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '7.4.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -132,6 +132,8 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">三流的代码，一流的BUG</p>
+      
   </div>
 
   <div class="site-nav-toggle">
@@ -246,11 +248,19 @@
                 
               
 
-              <time title="创建时间：2019-09-27 16:45:17 / 修改时间：23:39:20" itemprop="dateCreated datePublished" datetime="2019-09-27T16:45:17+08:00">2019-09-27</time>
+              <time title="创建时间：2019-09-27 16:45:17" itemprop="dateCreated datePublished" datetime="2019-09-27T16:45:17+08:00">2019-09-27</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-29 18:37:11" itemprop="dateModified" datetime="2019-09-29T18:37:11+08:00">2019-09-29</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -298,19 +308,15 @@
 <td>王五</td>
 </tr>
 </tbody></table>
-<h2 id="3-从XML映射SQL语句"><a href="#3-从XML映射SQL语句" class="headerlink" title="3. 从XML映射SQL语句"></a>3. 从XML映射SQL语句</h2><pre><code>在mapper包里建立StudentMapper.xml文件</code></pre><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"test.StudentMapper"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findStudent"</span> <span class="attr">resultMap</span>=<span class="string">"hashmap"</span>&gt;</span></span><br><span class="line">		SELECT * FROM student</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4-从XML中创建sqlSessionFactory实例"><a href="#4-从XML中创建sqlSessionFactory实例" class="headerlink" title="4. 从XML中创建sqlSessionFactory实例"></a>4. 从XML中创建sqlSessionFactory实例</h2><pre><code>在src根目录下创建mybatis-config.xml文件</code></pre><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbc.properties"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"test/StudentMapper.xml"</span> /&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- &lt;mapper class="test.StudentMapp" /&gt; --&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="5-配置数据库连接信息文件jdbc-properties"><a href="#5-配置数据库连接信息文件jdbc-properties" class="headerlink" title="5. 配置数据库连接信息文件jdbc.properties"></a>5. 配置数据库连接信息文件jdbc.properties</h2><pre><code>建立在src根目录下</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql:<span class="comment">//localhost:3306/test?characterEncoding=UTF-8</span></span><br><span class="line">jdbc.username=xxx</span><br><span class="line">jdbc.password=xxx</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-新建Test-java代码"><a href="#6-新建Test-java代码" class="headerlink" title="6. 新建Test.java代码"></a>6. 新建Test.java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> t9_23;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> t9_19.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="comment">//1.得到数据库连接</span></span><br><span class="line">		InputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">		<span class="comment">//user.setPassword("123456");</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			inputStream = Resources.getResourceAsStream(<span class="string">"mybatis-config.xml"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">		<span class="comment">//2.得到执行sql的对象</span></span><br><span class="line">		SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">		<span class="comment">//3.执行sql语句</span></span><br><span class="line">		List&lt;Map&gt; list = sqlSession.selectList(<span class="string">"findStudent"</span>);</span><br><span class="line">		<span class="comment">// 4.输出结果</span></span><br><span class="line">		<span class="keyword">for</span> (Map map : list) &#123;</span><br><span class="line">			System.ou.println(map);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//5.关闭数据库</span></span><br><span class="line">		sqlSession.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><font size="5" color="#FF0000">运行输出结果</font>  </p>
-<blockquote>
-<p>stuId=1,stuName=张三<br>stuId=2,stuName=李四<br>stuId=3,stuName=王五</p>
-</blockquote>
-
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/27/第一个MyBatis程序/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -374,7 +380,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-27 17:14:29" itemprop="dateModified" datetime="2019-09-27T17:14:29+08:00">2019-09-27</time>
+                <time title="修改时间：2019-09-29 18:36:54" itemprop="dateModified" datetime="2019-09-29T18:36:54+08:00">2019-09-29</time>
               </span>
             
           
@@ -407,18 +413,15 @@
 <li>MyBatis本是<font size="5" color="blue">apache</font>的一个开源项目，2010年这个项目迁移到了Google code,并且改名为MyBatis。2013年11月迁移到Github。</li>
 <li>MyBatis是支持<font size="5" color="blue">普通sql查询</font>，<font size="5" color="blue">存储过程</font>，和<font size="5" color="blue">高级映射</font>的优秀持久层框架</li>
 </ol>
-<h3 id="简介MyBatis的特点及其优势"><a href="#简介MyBatis的特点及其优势" class="headerlink" title="简介MyBatis的特点及其优势"></a>简介MyBatis的特点及其优势</h3><li>MyBatis是一个支持普通SQL查询、存储过程和高级映射的<font size="5" color="#FF0000">优秀持久层框架</font>  </li>
-<li>MyBatis使得用户无需再写底层的jdbc连接五大步骤，只需配置简单的XML以及properties文件即可完成</li>
-<li>消除了大量的JDBC冗余代码</li>
-<li>易上手和掌握</li>
-<li>能很好地与传统数据库协同工作</li>
-<li>很好地接受SQL语句</li>
-<li>提供与第三方缓存类库的集成支持</li>
-<li>引入了更好的性能</li>  
-
-
-<p>》》<a href="/2019/09/27/第一个MyBatis程序/" title="第一个MyBatis程序">第一个MyBatis程序</a></p>
-
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/26/MyBatis入门篇/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -482,7 +485,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-26 08:54:27" itemprop="dateModified" datetime="2019-09-26T08:54:27+08:00">2019-09-26</time>
+                <time title="修改时间：2019-09-29 18:37:22" itemprop="dateModified" datetime="2019-09-29T18:37:22+08:00">2019-09-29</time>
               </span>
             
           
@@ -512,9 +515,16 @@
 
       
           <h1 id="软件开发的定义"><a href="#软件开发的定义" class="headerlink" title="软件开发的定义"></a>软件开发的定义</h1><p>软件开发是根据用户要求建造出软件系统或者系统中的软件部分的过程。软件开发是一项包括需求捕捉、需求分析、设计、实现和测试的系统工程。  </p>
-<h2 id="根据软件工程这一学科，具体软件开发流程如下"><a href="#根据软件工程这一学科，具体软件开发流程如下" class="headerlink" title="根据软件工程这一学科，具体软件开发流程如下"></a>根据软件工程这一学科，具体软件开发流程如下</h2><!-- ![logo](_posts/软件开发流程/1.jpg) -->
-<p><img src="/2019/09/24/软件开发流程/1.jpg" alt="pic"></p>
-
+<h2 id="根据软件工程这一学科，具体软件开发流程如下"><a href="#根据软件工程这一学科，具体软件开发流程如下" class="headerlink" title="根据软件工程这一学科，具体软件开发流程如下"></a>根据软件工程这一学科，具体软件开发流程如下</h2>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/24/软件开发流程/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -788,16 +798,6 @@
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
         <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span>
         </a>
@@ -812,8 +812,6 @@
           
         
         
-        
-          
         
           
         
@@ -848,7 +846,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
 
         
 
@@ -876,6 +874,7 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 <script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
 <script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
 <script src="/js/next-boot.js?v=7.4.0"></script>
 
 
