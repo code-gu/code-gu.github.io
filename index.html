@@ -219,6 +219,169 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2019/10/24/MyBatis复杂查询(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="code-gu">
+      <meta itemprop="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
+      <meta itemprop="image" content="/images/head_pic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微小古的blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/24/MyBatis复杂查询(一)/" class="post-title-link" itemprop="url">MyBatis复杂查询(一)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-24 21:20:51" itemprop="dateCreated datePublished" datetime="2019-10-24T21:20:51+08:00">2019-10-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-25 11:18:43" itemprop="dateModified" datetime="2019-10-25T11:18:43+08:00">2019-10-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="联合查询、多对一查询"><a href="#联合查询、多对一查询" class="headerlink" title="联合查询、多对一查询"></a>联合查询、多对一查询</h1><p><font face="微软雅黑">有一段时间没更新博客了，有点懒了，话不多说</font><br><font color="red" face="微软雅黑">本文主要讲述MyBatis的多对一的复杂查询</font><br>假设目前我们有两张表student表  </p>
+<table>
+<thead>
+<tr>
+<th>class_id(INT 5)</th>
+<th>username(VARCHAR(50)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>张三</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李四</td>
+</tr>
+<tr>
+<td>3</td>
+<td>王五</td>
+</tr>
+<tr>
+<td>1</td>
+<td>刘洋</td>
+</tr>
+<tr>
+<td>1</td>
+<td>刘f</td>
+</tr>
+<tr>
+<td>1</td>
+<td>刘LIU</td>
+</tr>
+</tbody></table>
+<p>class表  </p>
+<table>
+<thead>
+<tr>
+<th>id(INT 5)</th>
+<th>name(VARCHAR(10)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>java放弃班</td>
+</tr>
+<tr>
+<td>2</td>
+<td>python入土班</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DB删除跑路班</td>
+</tr>
+</tbody></table>
+<p><strong>现在要求查询student表所有数据，输出学生姓名和该生所在班级名称</strong>  </p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><ul>
+    <li>一个班级对应多个学生</li>
+    <li>因此是多对一关系</li>
+    <li>使用嵌套resultMap将结果映射到集合</li>
+</ul>
+
+<hr>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/10/24/MyBatis复杂查询(一)/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2019/09/27/第一个MyBatis程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -779,7 +942,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
