@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Git常用命令学习通过上一文，我们明白了Git的一大功能点：版本控制，接下来我们将学习如何使用Git Git的使用方式Git 有多种使用方式。 你可以使用原生的命令行模式，也可以使用 GUI 模式，这些 GUI 软件也能提供多种功能。本文中，我们将使用命令行模式。 这是因为首先，只有在命令行模式下你才能执行 Git 的 所有 命令，而大多数的 GUI 软件只实现了 Git 所有功能的一个子集以降低">
+<meta name="keywords" content="工具,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git学习(二)——git常用命令与基本常识">
+<meta property="og:url" content="https://code-gu.github.io.git/2020/04/03/git学习-二-——git常用命令与基本常识/index.html">
+<meta property="og:site_name" content="卑微小古的blog">
+<meta property="og:description" content="Git常用命令学习通过上一文，我们明白了Git的一大功能点：版本控制，接下来我们将学习如何使用Git Git的使用方式Git 有多种使用方式。 你可以使用原生的命令行模式，也可以使用 GUI 模式，这些 GUI 软件也能提供多种功能。本文中，我们将使用命令行模式。 这是因为首先，只有在命令行模式下你才能执行 Git 的 所有 命令，而大多数的 GUI 软件只实现了 Git 所有功能的一个子集以降低">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403200651482.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403202131816.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg5NTU0OA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:updated_time" content="2020-04-03T13:50:04.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git学习(二)——git常用命令与基本常识">
+<meta name="twitter:description" content="Git常用命令学习通过上一文，我们明白了Git的一大功能点：版本控制，接下来我们将学习如何使用Git Git的使用方式Git 有多种使用方式。 你可以使用原生的命令行模式，也可以使用 GUI 模式，这些 GUI 软件也能提供多种功能。本文中，我们将使用命令行模式。 这是因为首先，只有在命令行模式下你才能执行 Git 的 所有 命令，而大多数的 GUI 软件只实现了 Git 所有功能的一个子集以降低">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200403200651482.png#pic_center">
+  <link rel="canonical" href="https://code-gu.github.io.git/2020/04/03/git学习-二-——git常用命令与基本常识/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>git学习(二)——git常用命令与基本常识 | 卑微小古的blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卑微小古的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">三流的代码，一流的BUG</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2020/04/03/git学习-二-——git常用命令与基本常识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="code-gu">
+      <meta itemprop="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
+      <meta itemprop="image" content="/images/head_pic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微小古的blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">git学习(二)——git常用命令与基本常识
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-03 21:44:25 / 修改时间：21:50:04" itemprop="dateCreated datePublished" datetime="2020-04-03T21:44:25+08:00">2020-04-03</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Git常用命令学习"><a href="#Git常用命令学习" class="headerlink" title="Git常用命令学习"></a>Git常用命令学习</h1><p>通过上一文，我们明白了Git的一大功能点：<strong>版本控制</strong>，接下来我们将学习如何使用Git</p>
+<h2 id="Git的使用方式"><a href="#Git的使用方式" class="headerlink" title="Git的使用方式"></a>Git的使用方式</h2><p>Git 有多种使用方式。 你可以使用原生的命令行模式，也可以使用 GUI 模式，这些 GUI 软件也能提供多种功能。本文中，我们将使用命令行模式。 这是因为首先，只有在命令行模式下你才能执行 Git 的 所有 命令，而大多数的 GUI 软件只实现了 Git 所有功能的一个子集以降低操作难度。 如果你在命令行模式下能操作的得心应手，那么GUI下几乎没有上手难度，反之则不成立。</p>
+<blockquote>
+<p>个人还是推荐使用命令行模式，程序员应当具有钻研精神，才能在这条路上走的更远</p>
+</blockquote>
+<p>在你安装完成Git后，我们创建Git仓库，随便在桌面或者文件夹内右键可以看到<code>Git Bash Here</code>的操作，我们在桌面下点击，并输入命令<code>pwd</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/c/Users/mr.古/Desktop</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>可以看到，显示的是当前目录，也就是你想在哪里创建Git进行项目管理，就在该文件目录进行<code>Git Bash Here</code>，这里我默认在D盘的<strong>git_test</strong>文件夹下==创建Git仓库==</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> D:/git_test/.git/</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200403200651482.png#pic_center" alt="init命令"><br>可以看到，文件夹内多了一个.git的隐藏文件，说明git仓库创建成功了，正式开始学习Git命令，但是学习之前，我们还是要简单说明一下，Git的==三个区域与三种文件状态==</p>
+<h3 id="三种区域"><a href="#三种区域" class="headerlink" title="三种区域"></a>三种区域</h3><p>首先是三种区域，简单地说就是Git存在三个区域，彼此配合工作完成本地的版本控制<br>工作区、暂存区以及 Git 目录(历史记录区)<br><img src="https://img-blog.csdnimg.cn/20200403202131816.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg5NTU0OA==,size_16,color_FFFFFF,t_70#pic_center" alt="Git三个区域"></p>
+<h3 id="三种文件状态"><a href="#三种文件状态" class="headerlink" title="三种文件状态"></a>三种文件状态</h3><p>Git 有三种状态，你的文件可能处于其中之一： <strong>已提交（committed）、已修改（modified） 和 已暂存（staged）</strong></p>
+<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>首先我们创建一个记事本<strong>test.txt</strong>，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第一次尝试Git工具</span><br></pre></td></tr></table></figure>
+
+<p>执行命令，将test.txt推送到暂存区</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add test.txt</span><br></pre></td></tr></table></figure>
+
+<p>没有任何响应？实则不报错即成功，我们进行<code>git status</code>查看文件状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   test.txt</span><br></pre></td></tr></table></figure>
+
+<p>可以看到 <strong>new file：test.txt</strong><br>只要在 Changes to be committed 这行下面的，就说明是已暂存状态。 如果此时提交，那么该文件在你运行 git add 时的版本将被留存在后续的历史记录中<br><strong>以上为推送一个文件的方式，如要推送所有文件需使用命令</strong><code>git add .</code></p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>我们使用<code>git commit</code>告诉Git，我们要把暂存区的文件放入Git仓库，成为一个新的版本该命令后面添加<code>-m</code>可以备注本次的提交信息</p>
+<blockquote>
+<p>个人建议必须填写<code>-m</code>信息，便于查看版本易于区分每个版本的更新内容</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"第一次git提交测试"</span></span><br><span class="line">[master (root-commit) 560d2fb] 第一次git提交测试</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 test.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>通过<code>git log</code>命令我们可以查看提交历史信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ Git <span class="built_in">log</span></span><br><span class="line">commit 560d2fb0a0f36a4408214ec9e2e9df611adeeb09 (HEAD -&gt; master)</span><br><span class="line">Author: code-gu &lt;******@qq.com&gt;</span><br><span class="line">Date:   Fri Apr 3 20:38:54 2020 +0800</span><br><span class="line"></span><br><span class="line">    第一次git提交测试</span><br></pre></td></tr></table></figure>
+
+<p>可以看到我们之前提交的版本，与备注的版本信息<br>再次<code>git status</code>查看文件状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+
+<p>没有文件待提交</p>
+<h2 id="修改已提交的文件"><a href="#修改已提交的文件" class="headerlink" title="修改已提交的文件"></a>修改已提交的文件</h2><p>我们修改test.txt内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一次尝试Git工具</span><br><span class="line">我修改了文件内容</span><br></pre></td></tr></table></figure>
+
+<p>查看文件状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">        modified:   test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>gti提示我们，test中的文件状态被修改了，还提示我们应当使用命令<code>git add</code>“ and/or “<code>git commit -a</code>提交文件</p>
+<blockquote>
+<p>当我们修改一个已提交的文件时，再次add——commit提交即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">mr.古@DESKTOP-M7SC9VM MINGW64 /d/git_test (master)</span><br><span class="line">$ git commit -m <span class="string">"第一次修改文件后的提交"</span></span><br><span class="line">[master 5cab867] 第一次修改文件后的提交</span><br><span class="line"> 1 file changed, 2 insertions(+), 1 deletion(-)</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p>通过上一文，我们得知张伟通过版本回退，逆转了局势，完美的和女神完成了第一次约会，那么他的操作是如何实现的呢，有两种方法<br>首先我们查看有版本库有几个版本<code>git log</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit 5cab8676cd7de6376fa4078006eb66839b5e352b (HEAD -&gt; master)</span><br><span class="line">Author: code-gu &lt;995100411@qq.com&gt;</span><br><span class="line">Date:   Fri Apr 3 20:53:25 2020 +0800</span><br><span class="line"></span><br><span class="line">    第一次修改文件后的提交</span><br><span class="line"></span><br><span class="line">commit 560d2fb0a0f36a4408214ec9e2e9df611adeeb09</span><br><span class="line">Author: code-gu &lt;995100411@qq.com&gt;</span><br><span class="line">Date:   Fri Apr 3 20:38:54 2020 +0800</span><br><span class="line"></span><br><span class="line">    第一次git提交测试</span><br></pre></td></tr></table></figure>
+
+<p> 简单讲解一下commit后面跟的一大串字符，这是git通过hash算法的sha-1加密算法，这种算法，通常用于检验文件完整性，在这里我们称为<font color="red">版本id</font></p>
+<h3 id="第一种方法git-reset-–hard-head"><a href="#第一种方法git-reset-–hard-head" class="headerlink" title="第一种方法git reset –hard head^"></a>第一种方法git reset –hard head^</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard head^</span><br><span class="line">HEAD is now at 560d2fb 第一次git提交测试</span><br></pre></td></tr></table></figure>
+
+<p>我们回到了第一次的提交版本,这里说明一下</p>
+<blockquote>
+<p>head后面的<code>^</code>代表回退一个版本，几个<code>^</code>代表回退几个版本</p>
+</blockquote>
+<p>我们再查看版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit 560d2fb0a0f36a4408214ec9e2e9df611adeeb09 (HEAD -&gt; master)</span><br><span class="line">Author: code-gu &lt;995100411@qq.com&gt;</span><br><span class="line">Date:   Fri Apr 3 20:38:54 2020 +0800</span><br><span class="line"></span><br><span class="line">    第一次git提交测试</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种方法git-reset-–hard"><a href="#第二种方法git-reset-–hard" class="headerlink" title="第二种方法git reset –hard"></a>第二种方法git reset –hard</h3><p>我们通过<code>git log</code>查看版本可以看到多个版本，其中commit后面一大串是版本id,而我们可以通过版本id进行版本回滚</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard 560d2fb0</span><br><span class="line">HEAD is now at 560d2fb 第一次git提交测试</span><br></pre></td></tr></table></figure>
+
+<pre><code>注意：我们只需要使用hash串的前面几个字符即可，因为多个文件的sha-1加密后不会产生唯一的hash值，但是建议使用4个以上的字符代替版本号</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>可以看到我们第二次提交的信息也没有了，但是问题也来了==如果出现了误操作，导致回退了不想用的版本，如何解决？== git的又一个强大之处出现了：<font color="red">git总有后悔药给你吃</font><br>我们通过命令<code>git reflog</code>可以查看最近的一些操作记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">560d2fb (HEAD -&gt; master) HEAD@&#123;0&#125;: reset: moving to 560d2fb0</span><br><span class="line">5cab867 HEAD@&#123;1&#125;: reset: moving to 5cab867</span><br><span class="line">560d2fb (HEAD -&gt; master) HEAD@&#123;2&#125;: reset: moving to 560d2fb</span><br><span class="line">560d2fb (HEAD -&gt; master) HEAD@&#123;3&#125;: reset: moving to head^</span><br><span class="line">5cab867 HEAD@&#123;4&#125;: reset: moving to 5cab8676</span><br><span class="line">560d2fb (HEAD -&gt; master) HEAD@&#123;5&#125;: reset: moving to 560d2fb0a0</span><br><span class="line">5cab867 HEAD@&#123;6&#125;: commit: 第一次修改文件后的提交</span><br><span class="line">560d2fb (HEAD -&gt; master) HEAD@&#123;7&#125;: commit (initial): 第一次git提交测试</span><br></pre></td></tr></table></figure>
+
+<p>可以看到之前对应操作过后的<code>版本id</code><br>然后我们通过第二种方式<code>git reset --hard 版本id</code>回退到误操作之前的版本，再继续你想要的操作即可</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><code>git add 文件名</code>or<code>git add .</code>推送一个或者全部文件到暂存区</li>
+<li><code>git commit</code>把暂存区文件提交为一个新的版本</li>
+<li><code>git reset --hard head^</code>回退上一个或多个版本</li>
+<li><code>git reset --hard 版本id</code>回退某个指定的版本</li>
+<li><code>git status</code>查看文件状态</li>
+<li><code>git reflog</code>查看最近操作</li>
+</ol>
+<p>最后为大家安利一个在线游戏类型的git学习网站,像游戏闯关一样学习git命令，码云上的一个教学<a href="https://oschina.gitee.io/learn-git-branching/" target="_blank" rel="noopener">https://oschina.gitee.io/learn-git-branching/</a></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/工具/" rel="tag"># 工具</a>
+            
+              <a href="/tags/Java/" rel="tag"># Java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/03/26/Git学习-一/" rel="next" title="Git学习(一)">
+                  <i class="fa fa-chevron-left"></i> Git学习(一)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git常用命令学习"><span class="nav-number">1.</span> <span class="nav-text">Git常用命令学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的使用方式"><span class="nav-number">1.1.</span> <span class="nav-text">Git的使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种区域"><span class="nav-number">1.1.1.</span> <span class="nav-text">三种区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种文件状态"><span class="nav-number">1.1.2.</span> <span class="nav-text">三种文件状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-add"><span class="nav-number">1.2.</span> <span class="nav-text">git add</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-commit"><span class="nav-number">1.3.</span> <span class="nav-text">git commit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-log"><span class="nav-number">1.3.1.</span> <span class="nav-text">git log</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改已提交的文件"><span class="nav-number">1.4.</span> <span class="nav-text">修改已提交的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本回退"><span class="nav-number">1.5.</span> <span class="nav-text">版本回退</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种方法git-reset-–hard-head"><span class="nav-number">1.5.1.</span> <span class="nav-text">第一种方法git reset –hard head^</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种方法git-reset-–hard"><span class="nav-number">1.5.2.</span> <span class="nav-text">第二种方法git reset –hard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/head_pic.jpg"
+      alt="code-gu">
+  <p class="site-author-name" itemprop="name">code-gu</p>
+  <div class="site-description" itemprop="description">记录学习记录,一些学习中遇到的问题,个人的转变经历</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">code-gu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
