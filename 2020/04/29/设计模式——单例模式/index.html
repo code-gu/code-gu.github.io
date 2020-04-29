@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="单例模式 什么是单例模式(定义)    确保一个类只有一个实例，并提供一个全局访问点来访问这个唯一实例  对象创建型模式  单例模式的结构 单例模式只包含一个单例角色  Singleton(单例)   类图表示购买一个独一无二的单例手机 单例模式的实现实现的关键点:如何保证一个类只有一个实例并且可以提供给全局访问？ 私有构造函数——只有自身能创建对象 静态公有的工厂方法——提供给用户唯一的对象 静">
+<meta name="keywords" content="Java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式——单例模式">
+<meta property="og:url" content="https://code-gu.github.io.git/2020/04/29/设计模式——单例模式/index.html">
+<meta property="og:site_name" content="卑微小古的blog">
+<meta property="og:description" content="单例模式 什么是单例模式(定义)    确保一个类只有一个实例，并提供一个全局访问点来访问这个唯一实例  对象创建型模式  单例模式的结构 单例模式只包含一个单例角色  Singleton(单例)   类图表示购买一个独一无二的单例手机 单例模式的实现实现的关键点:如何保证一个类只有一个实例并且可以提供给全局访问？ 私有构造函数——只有自身能创建对象 静态公有的工厂方法——提供给用户唯一的对象 静">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gitee.com/Code_Gu/images/raw/master/pic/gof23/%E7%B1%BB%E5%9B%BE.png">
+<meta property="og:updated_time" content="2020-04-29T05:03:14.883Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式——单例模式">
+<meta name="twitter:description" content="单例模式 什么是单例模式(定义)    确保一个类只有一个实例，并提供一个全局访问点来访问这个唯一实例  对象创建型模式  单例模式的结构 单例模式只包含一个单例角色  Singleton(单例)   类图表示购买一个独一无二的单例手机 单例模式的实现实现的关键点:如何保证一个类只有一个实例并且可以提供给全局访问？ 私有构造函数——只有自身能创建对象 静态公有的工厂方法——提供给用户唯一的对象 静">
+<meta name="twitter:image" content="https://gitee.com/Code_Gu/images/raw/master/pic/gof23/%E7%B1%BB%E5%9B%BE.png">
+  <link rel="canonical" href="https://code-gu.github.io.git/2020/04/29/设计模式——单例模式/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>设计模式——单例模式 | 卑微小古的blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卑微小古的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">三流的代码，一流的BUG</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://code-gu.github.io.git/2020/04/29/设计模式——单例模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="code-gu">
+      <meta itemprop="description" content="记录学习记录,一些学习中遇到的问题,个人的转变经历">
+      <meta itemprop="image" content="/images/head_pic.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卑微小古的blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">设计模式——单例模式
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-29 12:56:24 / 修改时间：13:03:14" itemprop="dateCreated datePublished" datetime="2020-04-29T12:56:24+08:00">2020-04-29</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/GoF23/" itemprop="url" rel="index"><span itemprop="name">GoF23</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><blockquote>
+<p>什么是单例模式(定义)  </p>
+</blockquote>
+<pre><code>确保一个类只有一个实例，并提供一个全局访问点来访问这个唯一实例</code></pre><ul>
+<li><input checked disabled type="checkbox"> 对象创建型模式</li>
+</ul>
+<h2 id="单例模式的结构"><a href="#单例模式的结构" class="headerlink" title="单例模式的结构"></a>单例模式的结构</h2><blockquote>
+<p>单例模式只包含一个单例角色</p>
+<ul>
+<li>Singleton(单例)</li>
+</ul>
+</blockquote>
+<p>类图表示购买一个独一无二的单例手机<br><img src="https://gitee.com/Code_Gu/images/raw/master/pic/gof23/%E7%B1%BB%E5%9B%BE.png" alt="image"></p>
+<h2 id="单例模式的实现"><a href="#单例模式的实现" class="headerlink" title="单例模式的实现"></a>单例模式的实现</h2><pre><code>实现的关键点:如何保证一个类只有一个实例并且可以提供给全局访问？</code></pre><ol>
+<li>私有构造函数——只有自身能创建对象</li>
+<li>静态公有的工厂方法——提供给用户唯一的对象</li>
+<li>静态私有成员变量(自身类型)——存放创建的对象，自己存取，数量可控</li>
+</ol>
+<a id="more"></a>
+<h2 id="问题与代码"><a href="#问题与代码" class="headerlink" title="问题与代码"></a>问题与代码</h2><p>我们知道，通常我们创建一个对象，该对象的所属类的构造方法通常是<code>public</code>，我们可以多次的实例化他，因为他是公开的，但是如果私有的构造方法呢？是否限制了他<code>new</code>的使用?变得不可随意实例化？  </p>
+<h3 id="所以我们首先满足第一点：私有构造函数"><a href="#所以我们首先满足第一点：私有构造函数" class="headerlink" title="所以我们首先满足第一点：私有构造函数"></a>所以我们首先满足第一点：私有构造函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1：私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">MyClass</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>私有的的构造器的类不能被直接实例化，必须拥有MyClass类的实例才能调用私有的构造方法(函数),但是想要获得MyClass的实例又必须通过他的构造方法。于是陷入了一个<strong>鸡生蛋，蛋生鸡</strong>的问题</p>
+<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><h3 id="满足第二点：静态公有的工厂方法"><a href="#满足第二点：静态公有的工厂方法" class="headerlink" title="满足第二点：静态公有的工厂方法"></a>满足第二点：静态公有的工厂方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1：私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">MyClass</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="comment">//2:静态公有的工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MyClass <span class="title">getInstace</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候，MyClass类中就有一个静态方法，静态方法的好处就在于可以通过类名直接调用该类的内部方法。那么我们就可以通过该静态方法创建实例，或者获取已经创建的实例，也就是结合第三点进一步完善代码</p>
+<h3 id="满足第三点-静态私有成员变量-自身类型"><a href="#满足第三点-静态私有成员变量-自身类型" class="headerlink" title="满足第三点:静态私有成员变量(自身类型)"></a>满足第三点:静态私有成员变量(自身类型)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">//3:静态私有成员变量(自身类型)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MyClass myClass;</span><br><span class="line">    <span class="comment">//1：私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">MyClass</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="comment">//2:静态公有的工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MyClass <span class="title">getInstace</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(myClass**<span class="keyword">null</span>)&#123;</span><br><span class="line">            myClass = <span class="keyword">new</span> MyClass();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> myClass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上就是最基本的单例模式，也称为<strong>懒汉式单例模式</strong>，通过方法<code>getInstace()</code>，没有实例就创建，存在则直接返回该实例。但是这种单例模式如果在多线程下就这样使用，而不经改造，就会出现问题，常用的单例模式有两种：<strong>饿汉式</strong>和<strong>懒汉式</strong>单例模式</p>
+<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><p>顾名思义，很饿，一开始就new一个实例，但是容易造成资源浪费</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hungry</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Hungry</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Hungry HUNGRY = <span class="keyword">new</span> HUNGRY();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Hungry <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> HUNGRY;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p>也就是我们一开始就介绍的模式，但是接下来我们会对其进行优化改良，首先我们改为多线程测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">//3:静态私有成员变量(自身类型)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MyClass myClass;</span><br><span class="line">    <span class="comment">//1：私有构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">MyClass</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//2:静态公有的工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MyClass <span class="title">getInstace</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(myClass**<span class="keyword">null</span>)&#123;</span><br><span class="line">            myClass = <span class="keyword">new</span> MyClass();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> myClass;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                MyClass.getInstace();</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果基本都不一致，也就是每个线程都有可能进行对<strong>myclass</strong>判断为空，而去new这个实例，也就不符合我们的单例模式的原则<br>这时，我们需要<strong>双重检查锁</strong>，在一定程度上进行保护,也就是在getInstace()上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2:静态公有的工厂方法</span></span><br><span class="line">    <span class="comment">//双重检测锁——懒汉式 简称DCL懒汉式</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MyClass <span class="title">getInstace</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(myClass ** <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(MyClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(myClass ** <span class="keyword">null</span>)&#123;</span><br><span class="line">                    myClass = <span class="keyword">new</span> MyClass();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> myClass;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次检测运行</p>
+<blockquote>
+<p>Thread-0   </p>
+</blockquote>
+<p>结果唯一,说明只实例化了一次，但是双重检测锁在极端情况下也是有问题的：不是一个<a href="https://www.cnblogs.com/william-dai/p/10895524.html/" target="_blank" rel="noopener">原子性操作</a>，例如我们在初始化一个实例的时候，JVM有以下4步操作，但是你只看到一个new操作</p>
+<ol>
+<li>申请内存空间</li>
+<li>初始化默认值（区别于构造器方法的初始化）</li>
+<li>执行构造器方法</li>
+<li>连接引用和实例  </li>
+</ol>
+<p>这4个操作有可能会重排序，顺序可能是1234也可能是1243，造成未初始化对象发布，也就是两个线程AB依次执行1243，A线程获取锁，在执行构造方法之前，释放了锁，此时B线程获得了锁，单是单例模式里的对象还未完成初始化就，单是确实占用了内存空间，并且有引用。因此<strong>(myClass==null)</strong>判断非空，所以获得了一个<strong>错误的实例对象</strong>，所以为了保证不会出现重排序，需要在static前加上<code>volatile</code>，这样就是一个<strong>完整的双重检测锁+原子性操作</strong></p>
+<h2 id="饿汉式与懒汉式比较"><a href="#饿汉式与懒汉式比较" class="headerlink" title="饿汉式与懒汉式比较"></a>饿汉式与懒汉式比较</h2><p><font color="red">饿汉式单例类：</font>无需考虑多个线程同时访问的问题；调用速度和反应时间优于懒汉式单例；资源利用率不及懒汉式单例；系统加载时间可能会较长，并且<strong>线程安全</strong>，因为虚拟机保证只会装载一次<br><font color="red">懒汉式单例类：</font>实现了延迟加载；必须处理好多个线程同时访问的问题；需通过<strong>双重检查锁定</strong>进行控制，导致系统性能受到一定影响。在未加<strong>双重检查锁定之前线程是不安全</strong>的</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h2 id="单例模式的优缺点"><a href="#单例模式的优缺点" class="headerlink" title="单例模式的优缺点"></a>单例模式的优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>提供了对唯一实例的控制访问</li>
+<li>可以节约系统资源，提高系统性能</li>
+</ol>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>扩展困难</li>
+<li>单例类职责过重</li>
+<li><del>由于垃圾回收机制，可能会导致共享的单例对象状态丢失</del>(针对于java1.2之前，1.2之后的版本已修复此bug)</li>
+</ol>
+<h3 id="模式使用环境"><a href="#模式使用环境" class="headerlink" title="模式使用环境"></a>模式使用环境</h3><ul>
+<li>系统只需要一个实例对象，或者因为资源消耗过大而只允许创建一个对象</li>
+<li>调用类的单个实例只有一个公共访问点，除了这个公共访问点，没有其他途径可以访问</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Java/" rel="tag"># Java</a>
+            
+              <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/04/03/git学习-二-——git常用命令与基本常识/" rel="next" title="git学习(二)——git常用命令与基本常识">
+                  <i class="fa fa-chevron-left"></i> git学习(二)——git常用命令与基本常识
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式的结构"><span class="nav-number">1.1.</span> <span class="nav-text">单例模式的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式的实现"><span class="nav-number">1.2.</span> <span class="nav-text">单例模式的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与代码"><span class="nav-number">1.3.</span> <span class="nav-text">问题与代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所以我们首先满足第一点：私有构造函数"><span class="nav-number">1.3.1.</span> <span class="nav-text">所以我们首先满足第一点：私有构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题："><span class="nav-number">1.3.1.1.</span> <span class="nav-text">问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决："><span class="nav-number">1.3.1.2.</span> <span class="nav-text">解决：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#满足第二点：静态公有的工厂方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">满足第二点：静态公有的工厂方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#满足第三点-静态私有成员变量-自身类型"><span class="nav-number">1.3.3.</span> <span class="nav-text">满足第三点:静态私有成员变量(自身类型)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式"><span class="nav-number">1.4.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒汉式"><span class="nav-number">1.5.</span> <span class="nav-text">懒汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式与懒汉式比较"><span class="nav-number">1.6.</span> <span class="nav-text">饿汉式与懒汉式比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式的优缺点"><span class="nav-number">1.8.</span> <span class="nav-text">单例模式的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.8.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.8.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式使用环境"><span class="nav-number">1.8.3.</span> <span class="nav-text">模式使用环境</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/head_pic.jpg"
+      alt="code-gu">
+  <p class="site-author-name" itemprop="name">code-gu</p>
+  <div class="site-description" itemprop="description">记录学习记录,一些学习中遇到的问题,个人的转变经历</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">code-gu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
